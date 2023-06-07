@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
     public class Exercises {
 
         @DataProvider(name = "additionNumbers")
+        //dvumeren masiv, broq na elementite e razmera na masiva
         public Object[][] generateAdditionNumbers() {
             Object[][] numbers = {
                     {2, 3, 5},
