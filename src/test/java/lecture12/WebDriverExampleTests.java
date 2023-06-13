@@ -27,9 +27,12 @@ public class WebDriverExampleTests {
     private static void setupDriver() {
         System.out.println("==========Setting up WebDriver==========");
         WebDriverManager.chromedriver().setup();
+        /* If you get error 500, try this
         ChromeOptions opt = new ChromeOptions();
         opt.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(opt);
+        driver = new ChromeDriver(opt); */
+
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
@@ -41,7 +44,7 @@ public class WebDriverExampleTests {
     @Test
     private static void testFindElement() {
         driver.get("http://training.skillo-bg.com:4200/posts/all");
-        WebElement login = driver.findElement(By.id("nav-link-login"));
+        WebElement login = driver.findElement(By.xpath("//a[@id='nav-link-login']"));
         login.click();
     }
 
@@ -58,7 +61,7 @@ public class WebDriverExampleTests {
 
     @Test
     private static void testFindElements() {
-        // vrashta prazen masiv, a ne greshka kato element
+
         driver.get("http://training.skillo-bg.com:4300/posts/all");
         // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -70,7 +73,6 @@ public class WebDriverExampleTests {
     @Test
     private static void testClick() {
 
-        //predi da avtomatizirate, go prav ite rachno, zapoznatave se s detajlite rachno
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver.get("http://training.skillo-bg.com:4300/posts/all");
@@ -83,7 +85,6 @@ public class WebDriverExampleTests {
     @Test
     private static void testSendKeys() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-// раб с инпут, техт филд
         driver.get("http://training.skillo-bg.com:4300/posts/all");
 
         WebElement login = driver.findElement(By.id("nav-link-loginfsdf"));
@@ -93,6 +94,7 @@ public class WebDriverExampleTests {
 
         //type in username field
         username.sendKeys("test");
+        username.sendKeys("proba1");
     }
 
     @Test
@@ -149,9 +151,12 @@ public class WebDriverExampleTests {
         WebElement select = driver.findElement(By.id("searchDropdownBox"));
         //select a ne Web Elemnt
         Select dropdownCategory = new Select(select);
+        dropdownCategory.selectByValue("search-alias=amazon-devices");
+
+
         //dropdownCategory.selectByVisibleText("Books");
-        dropdownCategory.selectByValue("search-alias=arts-crafts-intl-ship");
-        //  dropdownCategory.selectByVisibleText("Books");
+       // dropdownCategory.selectByValue("search-alias=arts-crafts-intl-ship");
+
     }
 
     @Test

@@ -78,7 +78,7 @@ import org.testng.annotations.Test;
                 Assert.assertEquals(divideResult, expectedResult,
                         String.format("Incorrect divide result for %s / %s", x, y));
             } catch (ArithmeticException e) {
-                if (y != 0) {
+                if (y == 0) {
                     throw e;
                 }
                 Assert.assertEquals(e.getMessage(), "/ by zero");
