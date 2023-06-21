@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class Ex {
     ChromeDriver driver;
     final String URL = "http://training.skillo-bg.com/";
+    final String HOME_URL = URL + "posts/all";
 
     // 0. Load Skillo site http://training.skillo-bg.com/ - Done
     // 1. Check Skillo logo element is visible - - Done
@@ -94,6 +95,16 @@ public class Ex {
         WebElement logOutBtn = driver.findElement(By.cssSelector(".fa-sign-out-alt"));
         Assert.assertTrue(logOutBtn.isDisplayed(), "logOutBtn icon is not visible");
 
+        // 10.Validate that the Profile tab is visible
+        WebElement profileTab = driver.findElement(By.id("nav-link-profile"));
+        Assert.assertTrue(profileTab.isDisplayed(), "Profile Tab is not displayed");
+
+        // 11.Validate that the new post btn is visible
+        WebElement newPostTab = driver.findElement(By.id("nav-link-new-post"));
+        Assert.assertTrue(newPostTab.isDisplayed(), "New Post button is not displayed");
+
+        // 12.Validate that the URL is correct
+        wait.until(ExpectedConditions.urlToBe(HOME_URL));
     }
     @AfterMethod
     public void cleanup() {
