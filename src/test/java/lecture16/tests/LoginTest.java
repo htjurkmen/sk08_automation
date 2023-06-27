@@ -1,11 +1,13 @@
 package lecture16.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import lecture16.pages.LoginPage1;
+import lecture16.pages.LoginPage;
 import lecture16.pages.Header;
 import lecture16.pages.HomePage;
+import lecture16.pages.ProfilePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -25,15 +27,17 @@ public class LoginTest {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 
     }
-@DataProvider(name = "users")
-public Object[][] getUsers(){
-        return  new Object[][]{
-                {"auto_user", "auto_pass"},
-                {"auto_user1@abv.bg", "auto_pass"}
+
+    @DataProvider(name = "users")
+    public Object[][] getUsers() {
+        return new Object[][]{
+                {"auto_user", "auto_pass", "auto_user"}, // test login by username
+                {"auto_user1@abv.bg", "auto_pass", "auto_user1"}, // test login by email
         };
-}
+    }
+
     @Test(dataProvider = "users")
-    public void LoginTest(String userNameOrEmail, String pass) {
+    public void LoginTest(String userNameOrEmail, String pass, String username) {
 
         System.out.println("1. Navigate to home page");
         HomePage homePage = new HomePage(driver);
@@ -44,10 +48,12 @@ public Object[][] getUsers(){
         headerPage.goToLogin();
 
         System.out.println("3. Check the URL is correct");
-        LoginPage1 loginPage = new LoginPage1(driver);
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.checkURL();
 
         System.out.println("4. Sign in is displayed ");
+        String headerText = loginPage.getSignInHeaderText();
+        Assert.assertEquals(headerText, "Sign in", "Incorrect Sign in header text!");
 
         System.out.println("5. Enter user name");
         loginPage.enterUserNameOrEmail(userNameOrEmail);
@@ -62,8 +68,14 @@ public Object[][] getUsers(){
         homePage.verifyURL();
 
         System.out.println("9. Profile Btn is visible and user can navigate to it ");
+        headerPage.goToProfile();
         System.out.println("10. Check the URL is correct");
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.verifyUrl();
         System.out.println("11. Check the user name");
+
+        String usernameHeaderText = profilePage.getUsernameHeaderText();
+        Assert.assertEquals(usernameHeaderText, username, "Incorrect username!");
     }
 
     @AfterMethod

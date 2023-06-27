@@ -333,7 +333,7 @@ public class ExampleTests {
         String actualMessage = driver.findElement(By.id("confirmResult")).getText();
         Assert.assertEquals(actualMessage, "You selected Cancel");
     }
-
+//populate alert
     @Test
     public void testPromptBox() {
         driver.get(baseUrl + "/alerts");
