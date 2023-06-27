@@ -30,8 +30,7 @@ public class LoginTest {
 
     @DataProvider(name = "users")
     public Object[][] getUsers() {
-        return new Object[][]{
-                {"auto_user", "auto_pass", "auto_user"}, // test login by username
+        return new Object[][]{{"auto_user", "auto_pass", "auto_user"}, // test login by username
                 {"auto_user1@abv.bg", "auto_pass", "auto_user1"}, // test login by email
         };
     }

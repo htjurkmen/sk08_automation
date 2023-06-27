@@ -50,24 +50,7 @@ public class ExampleTests {
         Assert.assertTrue(checkBox.isSelected(), "Checkbox with expected to be selected but is not!");
 
         WebElement result = driver.findElement(By.id("result"));
-        String expectedResult = "You have selected :\n" +
-                "home\n" +
-                "desktop\n" +
-                "notes\n" +
-                "commands\n" +
-                "documents\n" +
-                "workspace\n" +
-                "react\n" +
-                "angular\n" +
-                "veu\n" +
-                "office\n" +
-                "public\n" +
-                "private\n" +
-                "classified\n" +
-                "general\n" +
-                "downloads\n" +
-                "wordFile\n" +
-                "excelFile";
+        String expectedResult = "You have selected :\n" + "home\n" + "desktop\n" + "notes\n" + "commands\n" + "documents\n" + "workspace\n" + "react\n" + "angular\n" + "veu\n" + "office\n" + "public\n" + "private\n" + "classified\n" + "general\n" + "downloads\n" + "wordFile\n" + "excelFile";
         String actualResult = result.getText();
         Assert.assertEquals(actualResult, expectedResult, "Selection text is incorrect!");
 
@@ -103,20 +86,7 @@ public class ExampleTests {
         Assert.assertTrue(documentsCheckBox.isSelected());
 
         WebElement result = driver.findElement(By.id("result"));
-        String expectedResult = "You have selected :\n" +
-                "documents\n" +
-                "workspace\n" +
-                "react\n" +
-                "angular\n" +
-                "veu\n" +
-                "office\n" +
-                "public\n" +
-                "private\n" +
-                "classified\n" +
-                "general\n" +
-                "downloads\n" +
-                "wordFile\n" +
-                "excelFile";
+        String expectedResult = "You have selected :\n" + "documents\n" + "workspace\n" + "react\n" + "angular\n" + "veu\n" + "office\n" + "public\n" + "private\n" + "classified\n" + "general\n" + "downloads\n" + "wordFile\n" + "excelFile";
         String actualResult = result.getText();
         Assert.assertEquals(actualResult, expectedResult, "Selection text is incorrect!");
     }
@@ -134,7 +104,7 @@ public class ExampleTests {
         String actualText = driver.findElement(By.className("mt-3")).getText();
         String expResultYesRadio = "You have selected Yes";
 
-        Assert.assertEquals(actualText,"You have selected Yes" , "Incorrect result message!");
+        Assert.assertEquals(actualText, "You have selected Yes", "Incorrect result message!");
 
         // Click the 'Impressive' radio button label
         WebElement impressiveRadioButtonLabel = smallWait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[for='impressiveRadio']")));
@@ -170,7 +140,7 @@ public class ExampleTests {
         // Get Column header
 
         WebElement tableColumnHeader = table.findElement(By.className("rt-thead"));
-       // WebElement tableColumnHeader = driver.findElement(By.cssSelector(" .rt-table .rt-thead"));
+        // WebElement tableColumnHeader = driver.findElement(By.cssSelector(" .rt-table .rt-thead"));
         List<WebElement> columnsHeaderCells = tableColumnHeader.findElements(By.cssSelector("[role='columnheader']"));
 
         // Get the Email column index
@@ -217,8 +187,7 @@ public class ExampleTests {
             // Get Cells
             List<WebElement> cells = row.findElements(By.cssSelector("[role='gridcell']"));
             String cellText = cells.get(emailCellIndex).getText();
-            Assert.assertNotEquals(cellText, "alden@example.com",
-                    "Expected a row with email 'alden@example.com' to NOT exist adter the deletion!");
+            Assert.assertNotEquals(cellText, "alden@example.com", "Expected a row with email 'alden@example.com' to NOT exist adter the deletion!");
         }
     }
 
@@ -249,6 +218,7 @@ public class ExampleTests {
 
         Assert.assertEquals(actualHeadlineText, "This is a sample page");
     }
+
     @Test
     public void testNewWindow() {
         driver.get(baseUrl + "/browser-windows");
@@ -293,7 +263,7 @@ public class ExampleTests {
 
         // After switchTo().alert() we cannot interact with elements from the main window
         // Uncommenting this line will result in an error
-       // alertButton.getText();
+        // alertButton.getText();
 
         String actualAlertText = alert.getText();
         Assert.assertEquals(actualAlertText, "You clicked a button");
@@ -317,6 +287,7 @@ public class ExampleTests {
 
         alert.accept();
     }
+
     @Test
     public void testConfirmBox() {
         driver.get(baseUrl + "/alerts");
@@ -333,7 +304,8 @@ public class ExampleTests {
         String actualMessage = driver.findElement(By.id("confirmResult")).getText();
         Assert.assertEquals(actualMessage, "You selected Cancel");
     }
-//populate alert
+
+    //populate alert
     @Test
     public void testPromptBox() {
         driver.get(baseUrl + "/alerts");
@@ -421,7 +393,7 @@ public class ExampleTests {
 
     @AfterMethod
     protected final void cleanUpTestMethod() {
-      //  driver.close();
+        //  driver.close();
         if (this.driver != null) {
             this.driver.quit();
         }

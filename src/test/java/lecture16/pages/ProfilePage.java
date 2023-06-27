@@ -23,4 +23,6 @@ public class ProfilePage extends BasePage {
     public void verifyUrl() {
         verifyUrlContains(BASE_URL);
     }
+
+
 }

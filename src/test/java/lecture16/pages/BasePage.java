@@ -24,8 +24,6 @@ public class BasePage {
         element.click();
     }
 
-    ;
-
     public void verifyUrlContains(String url) {
         mediumWait.until(ExpectedConditions.urlContains(url));
     }

@@ -49,6 +49,7 @@ public class LoginPage {
         wait.until(ExpectedConditions.urlToBe(URLLogin));
 
     }
+
     public String getSignInHeaderText() {
         wait.until(ExpectedConditions.visibilityOf(signInText));
         return signInText.getText();
